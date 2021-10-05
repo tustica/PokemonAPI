@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Pokedex</title>
+</head>
+<body>
+    <div class="header">
+        <h1 id="title">Pokemon<span id="api"> API</span></h1>
+        <h1 id="madeby">made by Tim Ustica</h1>
+    </div>
+    <div class="container">
+        <div class="pokemon_sprites">
+            
+        </div>
+        <div class="drill_down">
+            <div id="top">
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $.ajax({
+        url:"http://pokeapi.co/api/v2/pokemon/?limit=50",
+        method:"get",
+        success:function(response){
+            var image = "";
+            for(i=0; i<response.results.length; i++){
+                the_url = response.results[i].url
+                $.ajax({
+                    url: the_url,
+                    method: "get",
+                    success: function(response){
+                        image+="<div style='display: inline-block;'><img src="+response.sprites.front_default+" class='sprites' id="+response.name+"></div>"
+                        $('.pokemon_sprites').html(image);
+                    }
+                })
+                
+            }
+            }
+        },
+    "json");
+    $(document).ready(function(){
+        $("body").on('click', 'img', function(){     
+            $.ajax({
+                url: 'https://pokeapi.co/api/v2/pokemon/'+this.id,
+                method: 'get',
+                success: function(response){
+                    var types_list = "<h3>Types</h3>"
+                    types_list+= "<ul>"
+                    for(i=0; i<response.types.length; i++){
+                        types_list+="<li>"+response.types[i].type.name+"</li>"
+                    }
+                    types_list+= "</ul>"
+                    height = response.height
+                    weight = response.weight
+                    name = response.name.charAt(0).toUpperCase()+response.name.slice(1);
+                    content = "<div id='content'><h1 id='name'>"+name+"</h1><img src="+response.sprites.front_default+" class='bruh'><div id='inner_content'>"+types_list+
+                        "<h3>Height: </h3>"+height+"<h3>Weight: </h3>"+weight+"</div></div>"
+                    $('#top').html(content)
+                }
+            })
+            
+        })
+    })
+</script>
+
+</html>

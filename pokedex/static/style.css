@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+html, body{
+    margin: 0px;
+    padding: 0px;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(rgb(161, 143, 143), red 70%);
+    margin-bottom: 20px;
+    box-shadow: 0px 2px 10px black;
+}
+#title{
+    padding: 20px;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+}
+#api{
+    color: rgb(214, 214, 0);
+    border: black;
+    font-family: 'Press Start 2P', cursive;
+}
+#madeby{
+    color: black;
+    font-size: 10px;
+    font-family: 'Press Start 2P', cursive;
+    padding: 40px;
+}
+
+.pokemon_sprites{
+    width: 75%;
+    height: auto;
+}
+
+
+img{
+    width: 150px;
+    height: 150px;
+}
+
+.drill_down{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25%;
+    margin-top: 10px;
+}
+
+#top{
+    display: flex;
+    justify-content: center;
+    margin-right: 10px;
+    height: 60%;
+    background-color: rgb(228, 228, 228);
+    border: 15px solid rgb(109, 109, 207);
+    border-radius: 20px;
+}
+
+#bottom{
+    height: 40%;
+    background-color: rgb(228, 228, 228);
+    border: 15px solid rgb(109, 109, 207);
+    border-radius: 20px;
+}
+
+.bruh{
+    width: 200px;
+    height: 200px;
+}
+
+#content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+#inner_content{
+    align-self: flex-start;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+#name{
+    font-size: 40px;
+}
+
+.sprites:hover{
+    animation: fade .3s ease-in-out;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: yellow;
+}
+
+@keyframes fade {
+    0%{
+        background-color: white;
+    }
+    100%{
+        background-color: yellow;
+    }
+}
